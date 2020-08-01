@@ -12,4 +12,5 @@ variables:
   image: uditgaurav/templates:ci
   script:
     - go get mvdan.cc/dockexec
-    - go test -exec='dockexec uditgaurav/templates:ci'
+    - go test -exec='dockexec postgres:12.1'
+#     - go test -exec='dockexec uditgaurav/templates:ci'
