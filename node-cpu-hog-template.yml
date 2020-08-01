@@ -9,7 +9,7 @@ variables:
   EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest
 
 .node_cpu_hog_template:
-  image: mayadata-io/chaos-ci-lib:ci
+  image: uditgaurav/templates:ci
   script:
     # Running node-cpu-hog experiment for the given application
     - go test tests/node-cpu-hog_test.go -v -count=1
