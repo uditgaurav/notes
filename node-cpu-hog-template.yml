@@ -11,5 +11,7 @@ variables:
 .node_cpu_hog_template:
   image: uditgaurav/templates:ci
   script:
+    - pwd
+    - ls 
     # Running node-cpu-hog experiment for the given application
     - go test tests/node-cpu-hog_test.go -v -count=1
