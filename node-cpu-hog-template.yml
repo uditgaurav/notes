@@ -11,7 +11,7 @@ variables:
 .node_cpu_hog_template:
 #   image: uditgaurav/templates:ci
   image:
-  name: uditgaurav/templates
+  name: uditgaurav/templates:ci
   entrypoint: ["/bin/sh", "-c","ls"]
 #   script:
 #     - pwd
