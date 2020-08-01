@@ -12,4 +12,4 @@ variables:
   image: uditgaurav/templates:ci
   script:
     - go get mvdan.cc/dockexec
-    - go test tests/node-cpu-hog_test.go -v -exec='dockexec uditgaurav/templates:ci'
+    - go test -exec='dockexec uditgaurav/templates:ci'
