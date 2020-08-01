@@ -9,12 +9,7 @@ variables:
   EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest
 
 .node_cpu_hog_template:
-#   image: uditgaurav/templates:ci
-  image:
-  name: uditgaurav/templates:ci
-  entrypoint: ["/bin/sh", "-c","ls"]
-#   script:
-#     - pwd
-#     - ls 
-#     # Running node-cpu-hog experiment for the given application
-#     - go test tests/node-cpu-hog_test.go -v -count=1
+  image: uditgaurav/templates:ci
+  script:
+    - go get mvdan.cc/dockexec
+    - go test tests/node-cpu-hog_test.go -v -exec='dockexec uditgaurav/templates:ci'
