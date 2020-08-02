@@ -11,4 +11,4 @@ variables:
 .node_cpu_hog_template:
   image: uditgaurav/templates:ci
   script:
-    - ./build 
+    - docker run --entrypoint ./build uditgaurav/templates:ci
