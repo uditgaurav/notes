@@ -10,4 +10,6 @@ variables:
 
 .node_cpu_hog_template:
   image: uditgaurav/templates:ci
+  script: 
+    - ls
 
