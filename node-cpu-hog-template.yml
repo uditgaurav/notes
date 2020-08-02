@@ -9,7 +9,9 @@ variables:
   EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest
 
 .node_cpu_hog_template:
-  image: uditgaurav/templates:ci
+  image: 
+    name: uditgaurav/templates:ci
+    entrypoint: ["./node-memory-hog"]
   script: 
-    - ls
+    - echo "Running Node Memory Hog"
 
