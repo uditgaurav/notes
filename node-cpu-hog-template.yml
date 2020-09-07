@@ -10,7 +10,8 @@ variables:
 
 .node_cpu_hog_template:
   image: 
-    name: uditgaurav/templates:ci
+#    name: uditgaurav/templates:ci
+    name: mayadata-io/chaos-ci-lib:ci
     entrypoint: ["./node-memory-hog"]
   script: 
     - echo "Running Node Memory Hog"
