@@ -16,6 +16,13 @@ jobs:
       - name: "Build & test"
         run: |
           echo "done!"
+          
+      - uses: peterjgrainger/action-create-branch@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: '"${{ secrets.RELEASE_TAG }}"'
+            
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
