@@ -1,4 +1,4 @@
-name: Go
+name: AutoRelease
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  pre-release:
-    name: "Pre Release"
+  release:
+    name: "Release"
     runs-on: "ubuntu-latest"
 
     steps:
@@ -20,9 +20,9 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "Development Build"
+          automatic_release_tag: "${{ secrets.RELEASE_TAG }}"
+          prerelease: false
+          title: "${{ secrets.RELEASE_TAG }}"
           files: |
             LICENSE.txt
             *.jar
