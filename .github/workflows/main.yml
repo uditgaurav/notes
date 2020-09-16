@@ -23,6 +23,3 @@ jobs:
           automatic_release_tag: "${{ secrets.RELEASE_TAG }}"
           prerelease: false
           title: "${{ secrets.RELEASE_TAG }}"
-          files: |
-            LICENSE.txt
-            *.jar
