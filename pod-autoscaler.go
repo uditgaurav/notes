@@ -17,7 +17,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-var err error
+
 
 //PreparePodAutoscaler contains the prepration steps before chaos injection
 func PreparePodAutoscaler(experimentsDetails *experimentTypes.ExperimentDetails, clients clients.ClientSets, resultDetails *types.ResultDetails, eventsDetails *types.EventDetails, chaosDetails *types.ChaosDetails) error {
