@@ -16,6 +16,12 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           labels: merge
+      
+      - name: Approve Pull Request
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: 0  
 
       - name: automerge      
         uses: "pascalgn/automerge-action@f81beb99aef41bb55ad072857d43073fba833a98"
