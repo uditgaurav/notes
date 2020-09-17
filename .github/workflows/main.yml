@@ -17,25 +17,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           labels: merge
 
-      - name: automerge
-        uses: davideviolante/pr-automerge-action@v1.1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          merge-method: 'squash' # Default 'squash'
-          min-approvals: 0 # Default 2
-          base-ref: 'master'         
-            
-#         uses: "pascalgn/automerge-action@f81beb99aef41bb55ad072857d43073fba833a98"
-#         env:          
-#           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-#           MERGE_LABELS: "merge,!WIP"
-#           MERGE_METHOD: "squash"
-#           MERGE_FORKS: "false"
-#           MERGE_RETRIES: "6"
-#           MERGE_RETRY_SLEEP: "10000"
-#           UPDATE_LABELS: ""
-#           UPDATE_METHOD: "rebase" 
+      - name: automerge      
+        uses: "pascalgn/automerge-action@f81beb99aef41bb55ad072857d43073fba833a98"
+        env:          
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "merge,!WIP"
+          MERGE_METHOD: "squash"
+          MERGE_FORKS: "false"
+          MERGE_RETRIES: "6"
+          MERGE_RETRY_SLEEP: "10000"
+          UPDATE_LABELS: ""
+          UPDATE_METHOD: "rebase" 
           
           
 # name: AutoRelease
