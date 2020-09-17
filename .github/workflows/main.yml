@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           merge-method: 'squash' # Default 'squash'
-          min-approvals: 2 # Default 2
+          min-approvals: 0 # Default 2
           base-ref: 'master'         
             
 #         uses: "pascalgn/automerge-action@f81beb99aef41bb55ad072857d43073fba833a98"
