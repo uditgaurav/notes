@@ -19,10 +19,10 @@ metadata:
     name: litmus
 rules:
 - apiGroups: ["","apps","batch","apps.openshift.io"]
-  resources: ["jobs","replicationcontrollers","daemonsets","replicasets","statefulsets","deploymentconfigs","events","services","secrets"]
+  resources: ["jobs","deployments","replicationcontrollers","daemonsets","replicasets","statefulsets","deploymentconfigs","events","services","secrets"]
   verbs: ["get","list","watch"]
 - apiGroups: ["","litmuschaos.io"]
-  resources: ["pods","deployments","configmaps","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","configmaps","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["get","create","update","delete","list","watch","deletecollection"]  
 - apiGroups: ["admissionregistration.k8s.io"]
   resources: ["validatingwebhookconfigurations"]
