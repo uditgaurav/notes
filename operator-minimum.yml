@@ -20,7 +20,7 @@ metadata:
 rules:
 - apiGroups: ["","apps","batch","apps.openshift.io"]
   resources: ["pods","jobs","deployments","replicationcontrollers","daemonsets","replicasets","statefulsets","deploymentconfigs","events","services","secrets"]
-  verbs: ["get","list","watch","deletecollection"]
+  verbs: ["get","list","watch"]
 - apiGroups: ["","litmuschaos.io"]
   resources: ["configmaps","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["get","create","update","delete","list","watch","deletecollection"]  
