@@ -19,14 +19,26 @@ metadata:
     name: litmus
 rules:
 - apiGroups: ["","apps","batch","apps.openshift.io"]
-  resources: ["jobs","deployments","replicationcontrollers","daemonsets","replicasets","statefulsets","deploymentconfigs","events","services","secrets"]
-  verbs: ["get","list","watch"]
+  resources: ["jobs","deployments","replicationcontrollers","daemonsets","replicasets","statefulsets","deploymentconfigs","secrets"]
+  verbs: ["get","list","watch","deletecollection"]
 - apiGroups: ["","litmuschaos.io"]
-  resources: ["pods","configmaps","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","configmaps","events","services","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["get","create","update","delete","list","watch","deletecollection"]  
-- apiGroups: ["admissionregistration.k8s.io"]
-  resources: ["validatingwebhookconfigurations"]
-  verbs: ["get","create","list","delete","update"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: litmus
+  labels:
+    name: litmus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: litmus
+subjects:
+- kind: ServiceAccount
+  name: litmus
+  namespace: litmus
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
