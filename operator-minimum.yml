@@ -40,21 +40,6 @@ subjects:
   name: litmus
   namespace: litmus
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
-metadata:
-  name: litmus
-  labels:
-    name: litmus
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: litmus
-subjects:
-- kind: ServiceAccount
-  name: litmus
-  namespace: litmus
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
