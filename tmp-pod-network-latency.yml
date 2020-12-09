@@ -1,0 +1,109 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects network latency on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-network-latency
+  labels:
+    name: pod-network-latency
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "shubh214/go-runner:ci"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-network-latency
+    command:
+    - /bin/bash
+    env:
+    
+    - name: TARGET_CONTAINER
+      value: ''
+
+    - name: NETWORK_INTERFACE
+      value: 'eth0'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'shubh214/go-runner:ci' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    - name: NETWORK_LATENCY
+      value: '60000' #in ms
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # Time period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: TARGET_POD
+      value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the target ips
+    # chaos injection will be triggered for these destination ips
+    - name: TARGET_IPs
+      value: ''
+
+    # provide the target hosts
+    # chaos injection will be triggered for these destination hosts
+    - name: TARGET_HOSTS
+      value: ''
+
+    # provide the socket file path
+    # applicable only for containerd and crio runtime
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      name: pod-network-latency
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1
