@@ -1,4 +1,4 @@
-""" This script updates the gitlab pipeline results to respective README.md """
+""" This script updates the gitlab pipeline results to respective Pipeline table """
 
 # import sys to get command line arguments
 import sys
@@ -37,17 +37,41 @@ pipeline=args.pipeline
 token = args.token
 
 github_token = Github(token)
+
+def get_file_to_update(pipeline,tag):
+       if tag == "ci":
+              if pipeline == "pod-level":
+                     return "generic-pipeline/pipeline-runs/pod-level-run.html"
+              elif pipeline == "node-level":
+                     return "generic-pipeline/pipeline-runs/node-level-run.html"
+              elif pipeline == "component":
+                     return "generic-pipeline/pipeline-runs/litmus-component-run.html"
+              else:
+                     raise Exception('Sorry, no pipeline found with name '+pipeline)
+       elif tag.startswith('RC'):
+              if pipeline == "pod-level":
+                     return "generic-pipeline/pipeline-runs/pod-level-rc.html"
+              elif pipeline == "node-level":
+                     return "generic-pipeline/pipeline-runs/node-level-rc.html"
+              elif pipeline == "component":
+                     return "generic-pipeline/pipeline-runs/litmus-component-rc.html"
+              else:
+                     raise Exception('Sorry, no pipeline found with name '+pipeline)
+       else:
+              if pipeline == "pod-level":
+                     return "generic-pipeline/pipeline-runs/pod-level-ga.html"
+              elif pipeline == "node-level":
+                     return "generic-pipeline/pipeline-runs/node-level-ga.html"
+              elif pipeline == "component":
+                     return "generic-pipeline/pipeline-runs/litmus-component-ga.html"
+              else:
+                     raise Exception('Sorry, no pipeline found with name '+pipeline)
+
 repo = github_token.get_repo("uditgaurav/test-litmus-e2e")
 b= repo.get_branch(branch="master")
-if pipeline == "pod-level":
-       contents = repo.get_contents("generic-pipeline/pod-level-run.md", "master")
-elif pipeline == "node-level":
-       contents = repo.get_contents("generic-pipeline/node-level-run.md", "master")
-elif pipeline == "component":
-       contents = repo.get_contents("generic-pipeline/litmus-component-run.md", "master")
-else:
-       raise Exception('Sorry, no pipeline found with name '+pipeline)
-
+filename = get_file_to_update(pipeline,tag)
+print("filename to be updated: "+filename)
+contents = repo.get_contents(filename, "master")
 file = repo.get_contents(contents.path, "master")
 file_path = contents.path
 file_content=str(file.decoded_content)
@@ -59,14 +83,14 @@ file_update_retries = 5
 pipeline_url ="<a href= \"https://gitlab.mayadata.io/litmuschaos/litmus-e2e/pipelines/{0}\">{0}</a>".format(pipeline_id)
 
 def fetch_file_content():
-    # fetching file contents of github file_path readme.md
+    # fetching file contents of github file_path
     count=0
     file = repo.get_contents(file_path, "master")
     file_content=str(file.decoded_content, 'utf-8')
     content_list = file_content.split('\n')
     totalCoverage= '<a href=\"https://bit.ly/2OLie8t\"><img alt='+coverage+'% src=\"https://progress-bar.dev/'+coverage+'\" /></a>'
 
-    # updating result's table if the table is already there
+    # updating result's table if the table is already present
     if file_content.find('<table>\n <tr>\n  <th>Pipeline ID</th>\n  <th>Execution Time</th>\n  <th>Release Version</th>\n  <th>Coverage (in %)</th></tr>\n')>0:
         new_pipeline = ' <tr>\n  <td>{}</td>\n  <td>{}</td>\n  <td>{}</td>\n  <td>{}</td>\n </tr>\n'.format(pipeline_url,time_stamp,tag,totalCoverage)
         index = content_list.index('  <th>Coverage (in %)</th></tr>')
@@ -83,7 +107,10 @@ def fetch_file_content():
 
     # creating result's table for first pipeline result entry 
     else:
-        updated_file_content =  '<table>\n <tr>\n  <th>Pipeline ID</th>\n  <th>Execution Time</th>\n  <th>Release Version</th>\n  <th>Coverage (in %)</th></tr>\n'
+        if tag=="ci":
+               updated_file_content =  '<table>\n <tr>\n  <th>Pipeline ID</th>\n  <th>Execution Time</th>\n  <th>Version</th>\n  <th>Coverage (in %)</th></tr>\n'
+        else:
+               updated_file_content =  '<table>\n <tr>\n  <th>Pipeline ID</th>\n  <th>Execution Time</th>\n  <th>Release Version</th>\n  <th>Coverage (in %)</th></tr>\n'
         updated_file_content = updated_file_content + (' <tr>\n  <td>{}</td>\n  <td>{}</td>\n  <td>{}</td>\n  <td>{}</td>\n </tr>\n'.format(pipeline_url,time_stamp,tag,totalCoverage))
         updated_file_content = updated_file_content + '</table>'
         index = len(content_list)
@@ -101,34 +128,34 @@ loop_itr = 0
 try_count = 5
 
 # github exception handling
-print("Trying to update readme.md file at path: {}".format(file_path))
+print("Trying to update respective html files at path: {}".format(file_path))
 try:
-    print("README.md content update try: {}".format(try_count))
+    print("Pipeline table content update try: {}".format(try_count))
     try_count += 1
     repo.update_file(file_path, commit_message, updated_file_content, file.sha, branch="master")
-    print("Readme.md updated successfully")
+    print("Pipeline table updated successfully")
 except github.GithubException as e:
     exception = e
     print("Error message:{}".format(exception.data['message']))
 
-    # retryng updating readme.md after refetching the file contents
+    # retryng updating Pipeline table after refetching the file contents
     while loop_itr < file_update_retries:
 
      # 409 is github exception status in case of conflict
-     # retry committing to respective pipeline's readme.md in case of conflict by refetching readme.md file contents
+     # retry committing to respective pipeline's Pipeline table in case of conflict by refetching Pipeline table file contents
      if exception.status == 409:
             
       # exception handling for github exception status: 409
       try:
-       print("README.md content update try: {}".format(try_count))
+       print("Pipeline table content update try: {}".format(try_count))
 
-       # refetch github readme.md file content
+       # refetch github Pipeline table file content
        file,updated_file_content = fetch_file_content()
        try_count += 1
 
-       # retry committing readme.md file 
+       # retry committing Pipeline table file 
        repo.update_file(file_path, commit_message, updated_file_content, file.sha, branch="master")
-       print("Readme.md updated successfully")
+       print("Pipeline table updated successfully")
 
        # exit the loop as file updated successfully
        break
@@ -139,5 +166,6 @@ except github.GithubException as e:
 
      # exit the loop if github exception is not 409
      else:
-       print("Readme.md updation failed")
+       print("Pipeline table updation failed")
        break
+
