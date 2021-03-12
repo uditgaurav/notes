@@ -45,7 +45,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "uditgaurav/go-runner:disk-fill"
+    image: "shubh214/go-runner:df"
     imagePullPolicy: Always
     args:
     - -c
@@ -80,7 +80,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'uditgaurav/go-runner:disk-fill'
+      value: 'shubh214/go-runner:df'
 
     # Provide the container runtime path
     # Default set to docker container path
