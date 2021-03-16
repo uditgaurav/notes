@@ -30,9 +30,44 @@ visudo
 gitlab-runner ALL=(ALL) NOPASSWD: ALL
 ```
 
-Checkout the `config.toml` file which is configuration file for GitLab runner
+- Checkout the `config.toml` file which is configuration file for GitLab runner
 
 ```bash
 sudo su - gitlab-runner
 sudo vi /etc/gitlab-runner/config.toml
 ```
+
+Configuration file:
+```yaml
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "kubernetes runner for component test"
+  url = "https://gitlab.mayadata.io/"
+  token = "XXXXXXXXXX"
+  executor = "kubernetes"
+  [runners.custom_build_dir]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]
+  [runners.kubernetes]
+    host = ""
+    bearer_token_overwrite_allowed = false
+    image = "litmuschaos/litmus-e2e:ci"
+    namespace = "default"
+    pull_policy = "always"
+    namespace_overwrite_allowed = ""
+    privileged = false
+    service_account = "litmus-runner"
+    service_account_overwrite_allowed = ""
+    pod_annotations_overwrite_allowed = ""
+    [runners.kubernetes.affinity]
+    [runners.kubernetes.pod_security_context]
+    [runners.kubernetes.volumes]
+ ```
+
