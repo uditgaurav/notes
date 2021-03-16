@@ -129,7 +129,7 @@ NAME               STATUS   ROLES                  AGE     VERSION
 ip-172-31-18-100   Ready    control-plane,master   3m18s   v1.20.4
 ```
 
-## Join a worker Node to the Kubeadm Cluster
+## Join A worker Node to the Kubeadm Cluster
 
 To join a worker node to the kubernetes cluster follow the below mentioned steps:
 
@@ -137,4 +137,9 @@ To join a worker node to the kubernetes cluster follow the below mentioned steps
 - Setup Docker service 19.03 docker version.
 - Setup Kubeadm, kubelet and kubectl
 - Use the join command to join the worker node.
+
+**NOTE:** If the instance you're using for kubeadm cluster is an EC2 instance then don't forget to open up the port 6443 in the instance security group.
+
+![Screenshot from 2021-03-17 03-27-02](https://user-images.githubusercontent.com/35391335/111385351-ae44dc00-86d0-11eb-851d-93d6c4800dbb.png)
+
 
