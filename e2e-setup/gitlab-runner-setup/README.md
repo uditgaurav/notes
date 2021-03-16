@@ -73,6 +73,6 @@ check_interval = 0
  
 Restart GitLab Runner
 ```bash
-systemctl restart gitlab-runner
-systemctl status gitlab-runner
+sudo systemctl restart gitlab-runner
+sudo systemctl status gitlab-runner
 ```
