@@ -15,6 +15,12 @@ apt-get update && apt-get install -y docker.io
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
 export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E apt-get install gitlab-runner
 ```
+
+_For Specific Version_
+```bash
+export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E apt-get install gitlab-runner=1.13.6
+```
+
 3. Register the Runner
 
 
@@ -81,4 +87,11 @@ Setup GitLab Runner [Service Account](https://github.com/uditgaurav/notes/blob/m
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/uditgaurav/notes/master/e2e-setup/gitlab-runner-setup/gitab-runner-sa.yaml
+```
+
+## Uninstallation
+
+```bash
+sudo apt remove gitlab-runner
+rm -rf /var/opt/gitlab
 ```
