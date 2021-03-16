@@ -129,6 +129,12 @@ NAME               STATUS   ROLES                  AGE     VERSION
 ip-172-31-18-100   Ready    control-plane,master   3m18s   v1.20.4
 ```
 
-#### Join a worker Node to the Kubeadm Cluster
+## Join a worker Node to the Kubeadm Cluster
 
+To join a worker node to the kubernetes cluster follow the below mentioned steps:
+
+- Setup Container Runtime
+- Setup Docker service 19.03 docker version.
+- Setup Kubeadm, kubelet and kubectl
+- Use the join command to join the worker node.
 
