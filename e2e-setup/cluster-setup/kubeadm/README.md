@@ -103,6 +103,12 @@ kubeadm join 172.31.18.100:6443 --token 2ekqtg.o88pcx8ikggp7h88 \
     --discovery-token-ca-cert-hash sha256:23ad32acc342526aebcd37bbd83d473f8b22fed3bb71677895178c77585d6167 
 ```
 
+The Join command token will expire in 24hr if you want to recreate it then run the following command:
+```bash
+kubeadm token create --print-join-command
+```
+
+
 Checking the node status:
 
 ```
