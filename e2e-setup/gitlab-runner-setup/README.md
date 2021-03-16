@@ -18,7 +18,7 @@ export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E apt-get install gitlab-runner
 
 _For Specific Version_
 ```bash
-export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E apt-get install gitlab-runner=1.13.6
+export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E apt-get install gitlab-runner=13.6.0
 ```
 
 3. Register the Runner
