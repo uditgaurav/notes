@@ -128,10 +128,12 @@ root@ip-172-31-18-100:~# kubectl get nodes
 NAME               STATUS   ROLES                  AGE     VERSION
 ip-172-31-18-100   Ready    control-plane,master   3m18s   v1.20.4
 ```
-
-Uncordon the master node
+Control plane node isolation
+By default, your cluster will not schedule Pods on the control-plane node for security reasons. 
+If you want to be able to schedule Pods on the control-plane node, 
+for example for a single-machine Kubernetes cluster for development, run:
 ```bash
-kubectl uncordon <master-node>
+kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
 ## Join A worker Node to the Kubeadm Cluster
