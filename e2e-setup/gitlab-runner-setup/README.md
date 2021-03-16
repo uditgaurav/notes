@@ -76,3 +76,9 @@ Restart GitLab Runner
 sudo systemctl restart gitlab-runner
 sudo systemctl status gitlab-runner
 ```
+
+Setup GitLab Runner [Service Account](https://github.com/uditgaurav/notes/blob/master/e2e-setup/gitlab-runner-setup/gitab-runner-sa.yaml) in the target cluster.
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/uditgaurav/notes/master/e2e-setup/gitlab-runner-setup/gitab-runner-sa.yaml
+```
