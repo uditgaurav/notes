@@ -133,10 +133,10 @@ ip-172-31-18-100   Ready    control-plane,master   3m18s   v1.20.4
 
 To join a worker node to the kubernetes cluster follow the below mentioned steps:
 
-- Setup Container Runtime
+- Setup [Container Runtime as Docker](https://github.com/uditgaurav/notes/tree/master/e2e-setup/cluster-setup/kubeadm#setup-container-runtime-as-docker)
 - Setup Docker service 19.03 docker version.
-- Setup Kubeadm, kubelet and kubectl
-- Use the join command to join the worker node.
+- Setup [Kubeadm, kubelet and kubectl](https://github.com/uditgaurav/notes/tree/master/e2e-setup/cluster-setup/kubeadm#installing-kubeadm-kubelet-and-kubectl)
+- Use the [join command](https://github.com/uditgaurav/notes/tree/master/e2e-setup/cluster-setup/kubeadm#to-initialize-the-control-plane-node-run) to join the worker node.
 
 **NOTE:** If the instance you're using for kubeadm cluster is an EC2 instance then don't forget to open up the port 6443 in the instance security group.
 
