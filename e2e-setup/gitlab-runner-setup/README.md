@@ -29,3 +29,10 @@ systemctl restart gitlab-runner
 visudo
 gitlab-runner ALL=(ALL) NOPASSWD: ALL
 ```
+
+Checkout the `config.toml` file which is configuration file for GitLab runner
+
+```bash
+sudo su - gitlab-runner
+sudo vi /etc/gitlab-runner/config.toml
+```
