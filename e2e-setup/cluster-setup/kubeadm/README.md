@@ -129,6 +129,11 @@ NAME               STATUS   ROLES                  AGE     VERSION
 ip-172-31-18-100   Ready    control-plane,master   3m18s   v1.20.4
 ```
 
+Uncordon the master node
+```bash
+kubectl uncordon <master-node>
+```
+
 ## Join A worker Node to the Kubeadm Cluster
 
 To join a worker node to the kubernetes cluster follow the below mentioned steps:
