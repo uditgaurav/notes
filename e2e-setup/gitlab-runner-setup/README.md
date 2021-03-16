@@ -70,4 +70,9 @@ check_interval = 0
     [runners.kubernetes.pod_security_context]
     [runners.kubernetes.volumes]
  ```
-
+ 
+Restart GitLab Runner
+```bash
+systemctl restart gitlab-runner
+systemctl status gitlab-runner
+```
