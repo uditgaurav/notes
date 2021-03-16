@@ -1,8 +1,11 @@
 ## Setup GitLab Runner
 
+Run the following commands inside the target VM.
+
 1. Install docker
 
 ```bash
+sudo su -
 apt-get update && apt-get install -y docker.io
 ```
 
@@ -14,10 +17,9 @@ export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E apt-get install gitlab-runner
 ```
 3. Register the Runner
 
-Run the following commands inside the target VM.
 
 ```bash
-sudo gitlab-runner register
+gitlab-runner register
 systemctl restart gitlab-runner
 ```
 
