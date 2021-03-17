@@ -1,5 +1,13 @@
 ## Setup Container runtime as Docker
 
+Following script can be used to setup Container Runtime:
+```bash
+wget https://raw.githubusercontent.com/uditgaurav/notes/master/e2e-setup/cluster-setup/kubeadm/setup-runtime.sh
+chmod +x setup-runtime.sh
+./setup-runtime.sh
+```
+
+
 #### INSTALL DOCKER ENGINE
 
 1. On each of your nodes, install the Docker for your Linux distribution as per [Install Docker Engine](https://docs.docker.com/engine/install/#server).
