@@ -68,21 +68,33 @@ metadata:
   labels:
     name: litmus-server
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - pods
-      - pods/exec
-    verbs:
-      - create
-      - patch
-      - update
-  - apiGroups:
-      - "apps"
-    resources:
-      - deployments
-    verbs:
-      - create
+- apiGroups: [""]
+  resources: ["replicationcontrollers","secrets"]
+  verbs: ["get","list"]
+- apiGroups: ["apps.openshift.io"]
+  resources: ["deploymentconfigs"]
+  verbs: ["get","list"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "daemonsets", "replicasets", "statefulsets"]
+  verbs: ["get","list","update"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["get","list","create","deletecollection"]
+- apiGroups: ["argoproj.io"]
+  resources: ["workflows","workflows/finalizers","workflowtemplates","workflowtemplates/finalizers","cronworkflows","cronworkflows/finalizers"]
+  verbs: ["create","delete","deletecollection","get","list","patch","update","watch"]
+- apiGroups: ["argoproj.io"]
+  resources: ["pods","pods/exec","configmaps","events","services"]
+  verbs: ["get","create","update","patch","delete","list","watch","deletecollection"]
+- apiGroups: [""]
+  resources: ["pods","pods/exec","configmaps","events","services","serviceaccounts"]
+  verbs: ["get","create","update","patch","delete","list","watch","deletecollection"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles","rolebindings"]
+  verbs: ["create","update"]
+- apiGroups: ["litmuschaos.io"]
+  resources: ["chaosengines","chaosexperiments","chaosresults"]
+  verbs: ["get","create","update","patch","delete","list","watch","deletecollection"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
