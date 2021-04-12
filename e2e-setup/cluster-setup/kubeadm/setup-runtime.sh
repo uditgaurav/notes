@@ -43,3 +43,8 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 echo "Thank You the cluster runtime is setup successfully!!!"
 echo "Now run kubeadm init to install the cluster"
+printf "Also after preflight checks
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  "
