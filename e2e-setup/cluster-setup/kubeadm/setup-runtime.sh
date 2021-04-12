@@ -41,10 +41,24 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-echo "Thank You the cluster runtime is setup successfully!!!"
-echo "Now run kubeadm init to install the cluster"
-printf "Also after preflight checks
-  mkdir -p $HOME/.kube
-  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+echo "Thank You the cluster runtime is setup successfully 🎉!!!"
+
+printf "Next steps:
+
+  1. Run kubeadm init (along with required flags)
+  
+  2. After preflight checks Run:
+  
+     mkdir -p $HOME/.kube
+     sudo cp -i /etc/kubernetes/admin.conf \$HOME/.kube/config
+     sudo chown \$(id -u):\$(id -g) \$HOME/.kube/config
+  
+  3. Install CNI example weave using:
+     
+     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+     
+  4. Once the master nodes are healthly you can also make it schedulable
+
+  🎉🎉🎉 Have a Nice Day 🎉🎉🎉 
+  
   "
