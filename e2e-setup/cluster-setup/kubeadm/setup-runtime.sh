@@ -42,3 +42,4 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 echo "Thank You the cluster runtime is setup successfully!!!"
+echo "Now run kubeadm init to install the cluster"
