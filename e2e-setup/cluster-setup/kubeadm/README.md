@@ -8,7 +8,7 @@ chmod +x setup-runtime.sh
 ```
 OR
 ```bash
-https://raw.githubusercontent.com/uditgaurav/notes/master/e2e-setup/cluster-setup/kubeadm/setup-runtime.sh
+bash <(curl -s https://raw.githubusercontent.com/uditgaurav/notes/master/e2e-setup/cluster-setup/kubeadm/setup-runtime.sh)
 ```
 
 #### INSTALL DOCKER ENGINE
