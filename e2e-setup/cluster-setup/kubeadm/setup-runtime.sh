@@ -55,7 +55,7 @@ printf "Next steps:
   
   3. Install CNI example weave using:
      
-     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+     kubectl apply -f \"https://cloud.weave.works/k8s/net?k8s-version=\$(kubectl version | base64 | tr -d '\n')\"
      
   4. Once the master nodes are healthly you can also make it schedulable
 
