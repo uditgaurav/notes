@@ -23,7 +23,7 @@ volumeBindingMode: WaitForFirstConsumer
 
 **NOTE**
 ```
-The volumeBindingMode MUST ALWAYS be set to `WaitForFirstConsumer`. volumeBindingMode: `WaitForFirstConsumer` instructs Kubernetes to initiate
+The volumeBindingMode MUST ALWAYS be set to WaitForFirstConsumer. volumeBindingMode: WaitForFirstConsumer instructs Kubernetes to initiate
 the creation of PV only after Pod using PVC is scheduled to the node.
 ```
 
