@@ -35,7 +35,7 @@ kubectl apply -f local-device-sc.yaml
 
 - Verify that the StorageClass is successfully created.
 
-```yaml
+```bash
 kubectl get sc local-device -o yaml
 ```
 
