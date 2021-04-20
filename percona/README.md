@@ -163,3 +163,77 @@ cluster1-pxc-unready        ClusterIP      None             <none>              
 kubernetes                  ClusterIP      10.100.0.1       <none>                                                                         443/TCP                       5h19m
 monitoring-service          LoadBalancer   10.100.32.246    a543e9e1d189644f9bf4f7fdf0ba15b3-1159960729.ap-southeast-1.elb.amazonaws.com   443:30317/TCP                 112m
 ```
+
+
+#### Command DB
+
+```bash
+$ kubectl run -i --rm --tty percona-client --image=percona:8.0 --restart=Never -- bash -il
+
+percona-client:/$ mysql -h cluster1-haproxy -uroot -pZuvpSbDe8QhiZ3fwV
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> CREATE DATABASE sbtest;
+Query OK, 1 row affected (0.02 sec)
+
+Use this same Database name in the following performance benchmark tasks. If you use any non-existence database name in the performance benchmark, the command will fail.
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sbtest             |
+| sys                |
++--------------------+
+5 rows in set (0.00 se
+```
+
+
+### Create Sysbench client
+
+```bash
+kubectl run -it --rm sysbench-client --image=perconalab/sysbench:latest --restart=Never -- bash
+```
+
+### Generate Load
+
+```bash
+sysbench oltp_read_write --tables=10 --table_size=1000000 --mysql-host=cluster1-pxc-0.cluster1-pxc --mysql-user=root --mysql-password=<YOUR-PASSWORD> --mysql-db=sbtest --time=600 --threads=16 --report-interval=1 run
+```
+How to get your mysql password?
+
+```bash
+$ kubectl get secret my-cluster-secrets -o yaml
+
+Sample snippet of output:
+
+apiVersion: v1
+data:
+  clustercheck: dUt5QVlMYTVKdWxaZDA1NGI=
+  monitor: NkRwbFVJcExCSFFFSHBMM3k=
+  operator: OGsyMmxhaG02blh0aW9BbkFW
+  proxyadmin: cVB6elZHZXUwVWNkaUV4MTJp
+  root: WnV2cFNiRGU4UWhpWjNmd1Y=
+  xtrabackup: MmVGSGsyWTlJdk44ZUlmQXlnYQ==
+kind: Secret
+
+
+Now, get the encoded information of the data named as root. It is given as “WnV2cFNiRGU4UWhpWjNmd1Y=”. The decoded value can be found using the following method.
+
+$ echo 'WnV2cFNiRGU4UWhpWjNmd1Y=' | base64 -d
+ZuvpSbDe8QhiZ3fwV
+```
