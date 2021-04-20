@@ -39,3 +39,8 @@ kubectl apply -f local-device-sc.yaml
 kubectl get sc local-device -o yaml
 ```
 
+#### Change Default Storage Class
+
+```bash
+kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+```
