@@ -1,6 +1,16 @@
-## Create OpenEBS [Storage Class](https://docs.openebs.io/docs/next/uglocalpv-device.html#create-storageclass)
+## Create OpenEBS [Storage Class](https://docs.openebs.io/docs/next/uglocalpv-device.html)
+
+- Install openebs
+
+```bash
+kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
+```
+
 
 - To create your own StorageClass to customize how Local PV with devices are created. For instance, if you would like to run MongoDB stateful applications with Local PV device, you would want to set the default filesystem as xfs and/or also dedicate some devices on node that you want to use for Local PV. Save the following StorageClass definition as `local-device-sc.yaml`.
+
+
+
 
 ```yaml
 apiVersion: storage.k8s.io/v1
