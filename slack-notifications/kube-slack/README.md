@@ -74,7 +74,7 @@ spec:
         image: willwill/kube-slack:v4.2.0
         env:
         - name: SLACK_URL
-          value: https://hooks.slack.com/services/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
+          value: https://hooks.slack.com/services/T01MEA0CE7N/XXXXXXXXXXXXXXXXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX
         - name: SLACK_USERNAME
           value: 'LitmusCI'
         resources:
