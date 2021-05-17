@@ -2,6 +2,13 @@
 
 - This repository contains the `configuration` files `installation scripts` for different application and services. Some of them are:
 
-  **App/Services**             |       **Link**       
--------------------------------|----------------------------------------------------------------------
- Kubernetes CNI                |[Here](https://github.com/uditgaurav/notes/blob/master/cni/network-cni.md) 
+<table>
+  <tr>
+    <th> Application/Services </th>
+    <th> Links </th>
+  </tr>
+  <tr> 
+    <td> Kubernetes CNI </td>
+    <td> [Here](https://github.com/uditgaurav/notes/blob/master/cni/network-cni.md)</td>
+  </tr>
+</table>
