@@ -1,4 +1,4 @@
-## Notes On Microservice Solution
+## Notes On Microservice Solution (Also  on https://uditgaurav.github.io/notes/)
 
 - This repository contains the `configuration` files `installation scripts` for different application and services. Some of them are:
 
