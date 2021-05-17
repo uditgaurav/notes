@@ -1,0 +1,35 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: helloservice-pod-delete
+spec:
+  engineState: "active"
+  annotationCheck: "false"
+  components:
+    runner:
+      image: "litmuschaos/chaos-runner:latest"
+      imagePullPolicy: "Always"
+  appinfo:
+    appns: "monitoring"
+    applabel: "app=helloservice"
+    appkind: "deployment"
+  jobCleanUpPolicy: 'retain'
+  chaosServiceAccount: litmus
+  experiments:
+  - name: pod-delete
+    spec:
+      probe:
+      - name: helloservice-prom-probe
+        type: "PromProbe"
+        promProbe/inputs:
+          endpoint: "http://34.123.7.221:31090"
+          query: "avg_over_time(probe_duration_seconds{instance='helloservice.monitoring.svc.cluster.local:80',job='blackbox'}[10s])*1000"
+          comparator:
+            criteria: "<="
+            value: "30" # in ms
+        mode: "Continuous" 
+        runProperties:
+          probeTimeout: 10
+          interval: 5
+          retry: 1
+          probePollingInterval: 2

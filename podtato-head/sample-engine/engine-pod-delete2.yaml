@@ -1,0 +1,25 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: helloservice-pod-delete
+  labels:
+    litmuschaos.io/engine-context: test3
+    author: oum
+spec:
+  engineState: "active"
+  annotationCheck: "false"
+  terminationGracePeriodSeconds: 100
+  components:
+    runner:
+            #image: "litmuschaos/chaos-runner:1.12.0"
+      imagePullPolicy: "Always"
+  appinfo:
+    appns: "default"
+    applabel: "app=sample-app-v2"
+    appkind: "deployment"
+  jobCleanUpPolicy: 'retain'
+  chaosServiceAccount: litmus
+  monitoring: true
+  experiments:
+  - name: pod-delete
+

@@ -1,0 +1,37 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: helloservice-pod-delete
+spec:
+  engineState: "active"
+  annotationCheck: "false"
+  components:
+    runner:
+      image: "litmuschaos/chaos-runner:ci"
+      imagePullPolicy: "Always"
+  appinfo:
+    appns: "monitoring"
+    applabel: "app=helloservice"
+    appkind: "deployment"
+  jobCleanUpPolicy: 'retain'
+  chaosServiceAccount: litmus
+  monitoring: true
+  experiments:
+  - name: pod-delete
+    spec:
+      probe:
+      - name: helloservice-cmd-probe
+        type: "cmdProbe"
+        cmdProbe/inputs:
+          command: "curl -o /dev/null -s -w '%{http_code}' http://34.70.7.60"
+          source: "inline"
+          comparator:
+            type: "int"
+            criteria: "=="
+            value: "200"
+        mode: "Continuous"
+        runProperties:
+          probeTimeout: 10
+          interval: 5
+          retry: 1
+          probePollingInterval: 2
