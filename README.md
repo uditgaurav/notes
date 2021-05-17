@@ -38,7 +38,11 @@
   <tr>
     <td>Podtato Head</td>
     <td><a href="https://github.com/uditgaurav/notes/tree/master/podtato-head">Click Here</a></td>
-  </tr>   
+  </tr>
+  <tr>
+    <td>Docker Image Pull</td>
+    <td><a href="https://github.com/uditgaurav/notes/tree/master/e2e-setup/cluster-setup/kubeadm">Click Here</a></td>
+  </tr>     
   <tr>
     <td>Kube Slack</td>
     <td><a href="https://github.com/uditgaurav/notes/tree/master/slack-notifications/kube-slack">Click Here</a></td>
