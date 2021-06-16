@@ -14,7 +14,7 @@ kubectl create ns <app-ns>(default monitoring)
 ```bash
 git clone https://github.com/uditgaurav/notes.git
 cd notes/podtato-head/hello-service
-kubectl apply -f notes/podtato-head/hello-service/app
+kubectl apply -f app
 ```
 _This will setup podtato along with black box exporter_
 
