@@ -24,8 +24,8 @@
     <td><a href="https://github.com/uditgaurav/notes/tree/master/kafka">Click Here</a></td>
   </tr>
   <tr>
-    <td>Metrics Server</td>
-    <td><a href="https://github.com/uditgaurav/notes/tree/master/metrics-server">Click Here</a></td>
+    <td>EKS Metrics Server</td>
+    <td><a href="https://github.com/uditgaurav/notes/tree/master/metrics-server/eks">Click Here</a></td>
   </tr>
   <tr>
     <td>OpneEBS LocalPV</td>
@@ -48,7 +48,7 @@
     <td><a href="https://github.com/uditgaurav/notes/tree/master/slack-notifications/kube-slack">Click Here</a></td>
   </tr>   
   <tr>
-    <td>Percona XtraDB-Cluster</td>
-    <td><a href="https://github.com/uditgaurav/notes/tree/master/percona">Click Here</a></td>
-  </tr>                 
+    <td>KinD Metrics Server</td>
+    <td><a href="https://github.com/uditgaurav/notes/tree/master/metrics-server/kind">Click Here</a></td>
+  </tr>              
 </table>
