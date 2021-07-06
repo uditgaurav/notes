@@ -35,7 +35,7 @@ prepare_indivisual_manifest(){
 }
 
 
-create_multiarch_manifest(){
+create_and_retag_multiarch_manifest(){
 
    declare -ga platforms=("linux/arm64" "linux/amd64")
 
@@ -58,5 +58,5 @@ push_multiarch_manifest(){
 setup
 docker_login
 prepare_indivisual_manifest
-create_multiarch_manifest
+create_and_retag_multiarch_manifest
 push_multiarch_manifest
