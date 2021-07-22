@@ -5,6 +5,10 @@
 ```
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
+OR
+```
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
+```
 
 2. Verify that the metrics-server deployment is running the desired number of pods with the following command.
 
