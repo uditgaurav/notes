@@ -485,7 +485,7 @@ spec:
       containers:
         - name: litmusportal-frontend
           image: chaosnative/litmusportal-frontend:ci
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           env:
@@ -598,7 +598,7 @@ spec:
               value: "v1.13.x"
           ports:
             - containerPort: 8080
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
         - name: auth-server
           image: chaosnative/litmusportal-auth-server:ci
           env:
@@ -630,7 +630,7 @@ spec:
               value: "litmus"
           ports:
             - containerPort: 3000
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
       serviceAccountName: litmus-server-account
 ---
 apiVersion: v1
@@ -673,7 +673,7 @@ spec:
           image: litmuschaos/mongo:4.2.8
           ports:
             - containerPort: 27017
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: mongo-persistent-storage
               mountPath: /data/db
