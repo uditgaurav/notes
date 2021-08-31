@@ -1,0 +1,200 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: litmus-server-account
+  namespace: clc-production
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: litmus-portal-admin-config
+  namespace: clc-production
+data:
+  AgentScope: namespace
+  AgentNamespace: clc-production
+  VERSION: "ci"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: litmusportal-frontend
+  namespace: clc-production
+  labels:
+    component: litmusportal-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: litmusportal-frontend
+  template:
+    metadata:
+      labels:
+        component: litmusportal-frontend
+    spec:
+      containers:
+        - name: litmusportal-frontend
+          image: chaosnative/clc-frontend:ci
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: AGENT_SCOPE
+              valueFrom:
+                configMapKeyRef:
+                  name: litmus-portal-admin-config
+                  key: AgentScope
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: litmusportal-frontend-service
+  namespace: clc-production
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 9091
+      targetPort: 8080
+  selector:
+    component: litmusportal-frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: litmusportal-server
+  namespace: clc-production
+  labels:
+    component: litmusportal-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: litmusportal-server
+  template:
+    metadata:
+      labels:
+        component: litmusportal-server
+    spec:
+      containers:
+        - name: graphql-server
+          image: chaosnative/clc-server:ci
+          env:
+            - name: VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: litmus-portal-admin-config
+                  key: VERSION
+            - name: DB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: DataBaseServer
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: JWTSecret
+            - name: LITMUS_PORTAL_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: SELF_CLUSTER
+              value: "false"
+            - name: AGENT_SCOPE
+              valueFrom:
+                configMapKeyRef:
+                  name: litmus-portal-admin-config
+                  key: AgentScope
+            - name: AGENT_NAMESPACE
+              valueFrom:
+                configMapKeyRef:
+                  name: litmus-portal-admin-config
+                  key: AgentNamespace
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: DB_PASSWORD
+            - name: PORTAL_SCOPE
+              value: "namespace"
+            - name: AGENT_DEPLOYMENTS
+              value: "[\"app=chaos-exporter\", \"name=chaos-operator\", \"app=event-tracker\", \"app=workflow-controller\"]"
+            - name: PORTAL_ENDPOINT
+              value: "https://cloud.chaosnative.com/backend"
+            - name: SUBSCRIBER_IMAGE
+              value: "chaosnative/clc-subscriber:ci"
+            - name: EVENT_TRACKER_IMAGE
+              value: "chaosnative/clc-event-tracker:ci"
+            - name: ARGO_WORKFLOW_CONTROLLER_IMAGE
+              value: "litmuschaos/workflow-controller:v2.11.0"
+            - name: ARGO_WORKFLOW_EXECUTOR_IMAGE
+              value: "litmuschaos/argoexec:v2.11.0"
+            - name: LITMUS_CHAOS_OPERATOR_IMAGE
+              value: "litmuschaos/chaos-operator:2.0.0"
+            - name: LITMUS_CHAOS_RUNNER_IMAGE
+              value: "litmuschaos/chaos-runner:2.0.0"
+            - name: LITMUS_CHAOS_EXPORTER_IMAGE
+              value: "litmuschaos/chaos-exporter:2.0.0"
+            - name: CONTAINER_RUNTIME_EXECUTOR
+              value: "k8sapi"
+            - name: HUB_BRANCH_NAME
+              value: "v2.0.x"
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+        - name: auth-server
+          image: chaosnative/clc-auth-server:ci
+          env:
+            - name: STRICT_PASSWORD_POLICY
+              value: "false"
+            - name: DB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: DataBaseServer
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: JWTSecret
+            - name: ADMIN_USERNAME
+              value: "admin"
+            - name: ADMIN_PASSWORD
+              value: "litmus"
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: clc-server-config
+                  key: DB_PASSWORD
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+      serviceAccountName: litmus-server-account
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: litmusportal-server-service
+  namespace: clc-production
+spec:
+  type: ClusterIP
+  ports:
+    - name: graphql-server
+      port: 9002
+      targetPort: 8080
+    - name: auth-server
+      port: 9003
+      targetPort: 3000
+  selector:
+    component: litmusportal-server
