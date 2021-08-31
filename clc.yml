@@ -596,8 +596,6 @@ spec:
               value: "k8sapi"
             - name: HUB_BRANCH_NAME
               value: "v1.13.x"
-            - name: AGENT_DEPLOYMENTS
-              value: "[\"app=chaos-exporter\", \"name=chaos-operator\", \"app=event-tracker\", \"app=workflow-controller\"]"              
           ports:
             - containerPort: 8080
           imagePullPolicy: IfNotPresent
