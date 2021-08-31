@@ -484,7 +484,7 @@ spec:
     spec:
       containers:
         - name: litmusportal-frontend
-          image: chaosnative/litmusportal-frontend:ci
+          image: chaosnative/litmusportal-frontend:2.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -528,7 +528,7 @@ spec:
     spec:
       containers:
         - name: graphql-server
-          image: chaosnative/litmusportal-server:ci
+          image: chaosnative/litmusportal-server:2.0.0
           env:
             - name: DB_SERVER
               valueFrom:
@@ -569,9 +569,9 @@ spec:
             - name: PORTAL_SCOPE
               value: "cluster"
             - name: SUBSCRIBER_IMAGE
-              value: "litmuschaos/litmusportal-subscriber:ci"
+              value: "litmuschaos/litmusportal-subscriber:2.0.0"
             - name: EVENT_TRACKER_IMAGE
-              value: "litmuschaos/litmusportal-event-tracker:ci"
+              value: "litmuschaos/litmusportal-event-tracker:2.0.0"
             - name: ARGO_WORKFLOW_CONTROLLER_IMAGE
               value: "litmuschaos/workflow-controller:v2.11.0"
             - name: ARGO_WORKFLOW_EXECUTOR_IMAGE
@@ -600,7 +600,7 @@ spec:
             - containerPort: 8080
           imagePullPolicy: IfNotPresent
         - name: auth-server
-          image: chaosnative/litmusportal-auth-server:ci
+          image: chaosnative/litmusportal-auth-server:2.0.0
           env:
             - name: STRICT_PASSWORD_POLICY
               value: "false"
