@@ -147,6 +147,13 @@ for example for a single-machine Kubernetes cluster for development, run:
 kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
+## Add storage class to the cluster
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```
+
 ## Join A worker Node to the Kubeadm Cluster
 
 To join a worker node to the kubernetes cluster follow the below mentioned steps:
