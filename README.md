@@ -24,6 +24,10 @@
     <td><a href="https://github.com/uditgaurav/notes/tree/master/kafka">Click Here</a></td>
   </tr>
   <tr>
+    <td>SSM Script</td>
+    <td><a href="https://github.com/uditgaurav/notes/tree/master/ssm-scripts">Click Here</a></td>
+  </tr>  
+  <tr>
     <td>EKS Metrics Server</td>
     <td><a href="https://github.com/uditgaurav/notes/tree/master/metrics-server/eks">Click Here</a></td>
   </tr>
