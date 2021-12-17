@@ -7,7 +7,6 @@ metadata:
     run: nginx
   annotations:
     litmuschaos.io/chaos: "true"
-  namespace: litmus
 spec:
   replicas: 3
   selector:
@@ -35,7 +34,6 @@ metadata:
   labels:
     run: nginx
   name: nginx
-  namespace: litmus
 spec:
   ports:
   - port: 80
