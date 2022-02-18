@@ -4,52 +4,52 @@ artifactory.global.standardchartered.com/ccibce/dev/
 https://jenkins.global.standardchartered.com/job/DEVOPSCL/job/docker-images
 
 artifactory.global.standardchartered.com/litmuschaos/curl:latest
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/curl:2.6.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/curl:2.3.0
 
-artifactory.global.standardchartered.com/chaosnative/litmusportal-auth-server:2.6.0
-artifactory.global.standardchartered.com/ccibce/dev/chaosnative/litmusportal-auth-server:2.6.0
+artifactory.global.standardchartered.com/litmuschaos/cle-auth-server:2.3.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/cle-auth-server:2.3.0
 
-artifactory.global.standardchartered.com/chaosnative/litmusportal-frontend:2.6.0
-artifactory.global.standardchartered.com/ccibce/dev/chaosnative/litmusportal-frontend:2.6.0
+artifactory.global.standardchartered.com/litmuschaos/cle-frontend:2.3.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/cle-frontend:2.3.0
 
-artifactory.global.standardchartered.com/chaosnative/litmusportal-license-module:2.6.0
-artifactory.global.standardchartered.com/ccibce/dev/chaosnative/litmusportal-license-module:2.6.0
+artifactory.global.standardchartered.com/litmuschaos/cle-license-module:2.3.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/cle-license-module:2.3.0
 
-artifactory.global.standardchartered.com/chaosnative/litmusportal-server:2.6.0
-artifactory.global.standardchartered.com/ccibce/dev/chaosnative/litmusportal-server:2.6.0
+artifactory.global.standardchartered.com/litmuschaos/cle-server:2.3.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/cle-server:2.3.0
 
 artifactory.global.standardchartered.com/curlimages/curl:7.78.0
 artifactory.global.standardchartered.com/ccibce/dev/curlimages/curl:7.78.0
 
-artifactory.global.standardchartered.com/litmuschaos/argoexec:v3.2.3
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/argoexec:v3.2.3
+artifactory.global.standardchartered.com/litmuschaos/argoexec:v2.11.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/argoexec:v2.11.0
 
-artifactory.global.standardchartered.com/litmuschaos/chaos-exporter:2.5.0
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-exporter:2.5.0
+artifactory.global.standardchartered.com/litmuschaos/chaos-exporter:2.2.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-exporter:2.2.0
 
-artifactory.global.standardchartered.com/litmuschaos/chaos-operator:2.5.0
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-operator:2.5.0
+artifactory.global.standardchartered.com/litmuschaos/chaos-operator:2.2.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-operator:2.2.0
 
-artifactory.global.standardchartered.com/litmuschaos/chaos-runner:2.5.0
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-runner:2.5.0
+artifactory.global.standardchartered.com/litmuschaos/chaos-runner:2.2.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-runner:2.2.0
 
-artifactory.global.standardchartered.com/litmuschaos/go-runner:2.5.0
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/go-runner:2.5.0
+artifactory.global.standardchartered.com/litmuschaos/go-runner:2.2.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/go-runner:2.2.0
 
 artifactory.global.standardchartered.com/litmuschaos/k8s:latest
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/k8s:2.6.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/k8s:2.3.0
 
 artifactory.global.standardchartered.com/litmuschaos/litmus-checker:latest
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmus-checker:2.6.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmus-checker:2.3.0
 
-artifactory.global.standardchartered.com/chaosnative/litmusportal-event-tracker:2.6.0
-artifactory.global.standardchartered.com/ccibce/dev/chaosnative/litmusportal-event-tracker:2.6.0
+artifactory.global.standardchartered.com/litmuschaos/cle-event-tracker:2.3.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/cle-event-tracker:2.3.0
 
-artifactory.global.standardchartered.com/chaosnative/litmusportal-subscriber:2.6.0
-artifactory.global.standardchartered.com/ccibce/dev/chaosnative/litmusportal-subscriber:2.6.0
+artifactory.global.standardchartered.com/litmuschaos/cle-subscriber:2.3.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/cle-subscriber:2.3.0
 
 artifactory.global.standardchartered.com/litmuschaos/mongo:4.2.8
 artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/mongo:4.2.8
 
-artifactory.global.standardchartered.com/litmuschaos/workflow-controller:v3.2.3
-artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/workflow-controller:v3.2.3
+artifactory.global.standardchartered.com/litmuschaos/workflow-controller:v2.11.0
+artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/workflow-controller:v2.11.0
