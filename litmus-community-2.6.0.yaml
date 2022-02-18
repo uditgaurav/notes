@@ -503,7 +503,7 @@ spec:
     spec:
       containers:
         - name: litmusportal-frontend
-          image: artifactory.global.standardchartered.com/litmuschaos/litmusportal-frontend:2.6.0
+          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmusportal-frontend:2.6.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -555,7 +555,7 @@ spec:
     spec:
       initContainers:
         - name: wait-for-mongodb
-          image: artifactory.global.standardchartered.com/litmuschaos/curl:latest
+          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/curl:latest
           command: ["/bin/sh", "-c"]
           args:
             [
@@ -563,7 +563,7 @@ spec:
             ]
       containers:
         - name: graphql-server
-          image: artifactory.global.standardchartered.com/litmuschaos/litmusportal-server:2.6.0
+          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmusportal-server:2.6.0
           envFrom:
             - configMapRef:
                 name: litmus-portal-admin-config
@@ -582,19 +582,19 @@ spec:
             - name: PORTAL_SCOPE
               value: "cluster"
             - name: SUBSCRIBER_IMAGE
-              value: "artifactory.global.standardchartered.com/litmuschaos/litmusportal-subscriber:2.6.0"
+              value: "artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmusportal-subscriber:2.6.0"
             - name: EVENT_TRACKER_IMAGE
-              value: "artifactory.global.standardchartered.com/litmuschaos/litmusportal-event-tracker:2.6.0"
+              value: "artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmusportal-event-tracker:2.6.0"
             - name: ARGO_WORKFLOW_CONTROLLER_IMAGE
-              value: "artifactory.global.standardchartered.com/litmuschaos/workflow-controller:v3.2.3"
+              value: "artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/workflow-controller:v3.2.3"
             - name: ARGO_WORKFLOW_EXECUTOR_IMAGE
-              value: "artifactory.global.standardchartered.com/litmuschaos/argoexec:v3.2.3"
+              value: "artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/argoexec:v3.2.3"
             - name: LITMUS_CHAOS_OPERATOR_IMAGE
-              value: "artifactory.global.standardchartered.com/litmuschaos/chaos-operator:2.5.0"
+              value: "artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-operator:2.5.0"
             - name: LITMUS_CHAOS_RUNNER_IMAGE
-              value: "artifactory.global.standardchartered.com/litmuschaos/chaos-runner:2.5.0"
+              value: "artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-runner:2.5.0"
             - name: LITMUS_CHAOS_EXPORTER_IMAGE
-              value: "artifactory.global.standardchartered.com/litmuschaos/chaos-exporter:2.5.0"
+              value: "artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/chaos-exporter:2.5.0"
             - name: SERVER_SERVICE_NAME
               value: "litmusportal-server-service"
             - name: AGENT_DEPLOYMENTS
@@ -618,7 +618,7 @@ spec:
             - containerPort: 8000
           imagePullPolicy: Always
         - name: auth-server
-          image: artifactory.global.standardchartered.com/litmuschaos/litmusportal-auth-server:2.6.0
+          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmusportal-auth-server:2.6.0
           envFrom:
             - configMapRef:
                 name: litmus-portal-admin-config
@@ -682,7 +682,7 @@ spec:
     spec:
       containers:
         - name: mongo
-          image: artifactory.global.standardchartered.com/litmuschaos/mongo:4.2.8
+          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/mongo:4.2.8
           args: ["--ipv6"]
           ports:
             - containerPort: 27017
