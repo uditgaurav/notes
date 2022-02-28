@@ -1,6 +1,6 @@
 ## Notes On Microservice Solution (Also  on https://uditgaurav.github.io/notes/)
 
-- This repository contain 3 the `configuration` files `installation scripts` for different application and services. Some of them are:
+- This repo contain 3 the `configuration` files `installation scripts` for different application and services. Some of them are:
 
 <table style="width:100%">
   <tr>
