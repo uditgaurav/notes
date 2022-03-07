@@ -1,6 +1,6 @@
 ## Notes On Microservice Solution (Also  on https://uditgaurav.github.io/notes/)
 
-- This contain 3 the `configuration` files `installation scripts` for different application and services. Some of them are:
+- This contain the `configuration` files `installation scripts` for different application and services. Some of them are:
 
 <table style="width:100%">
   <tr>
@@ -60,5 +60,3 @@
     <td><a href="https://github.com/uditgaurav/notes/tree/master/metrics-server/kind">Click Here</a></td>
   </tr>              
 </table>
-
-kubectl delete po $(kubectl get pods --no-headers | grep Running | awk '{print $1}')
