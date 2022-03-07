@@ -61,5 +61,4 @@
   </tr>              
 </table>
 
-https://hub.docker.com/u/chaosnative
-https://hub.docker.com/u/litmuschaos
+kubectl delete po $(kubectl get pods --no-headers | grep Running | awk '{print $1}')
