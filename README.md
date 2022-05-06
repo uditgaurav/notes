@@ -62,3 +62,5 @@
 </table>
 
 https://litmuschaos.github.io/litmus/experiments/concepts/security/openshift-scc/
+https://litmuschaos.github.io/litmus/experiments/concepts/IAM/awsIamIntegration/
+https://litmuschaos.github.io/litmus/experiments/categories/aws/ec2-terminate-by-id/
