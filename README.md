@@ -62,3 +62,4 @@
 </table>
 
 [https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/](https://rpmfind.net/linux/RPM/opensuse/ports/15.3/armv7hl/kubernetes1.20-kubelet-1.20.2-lp153.1.1.armv7hl.html)
+https://rpmfind.net/linux/RPM/opensuse/ports/15.3/armv7hl/kubernetes1.20-kubelet-1.20.2-lp153.1.1.armv7hl.html
