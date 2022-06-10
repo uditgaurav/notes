@@ -61,5 +61,20 @@
   </tr>              
 </table>
 
-[https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/](https://rpmfind.net/linux/RPM/opensuse/ports/15.3/armv7hl/kubernetes1.20-kubelet-1.20.2-lp153.1.1.armv7hl.html)
-https://rpmfind.net/linux/RPM/opensuse/ports/15.3/armv7hl/kubernetes1.20-kubelet-1.20.2-lp153.1.1.armv7hl.html
+    Image:          chaosnative/cle-auth-server:2.3.0
+    Image:          chaosnative/cle-frontend:2.3.0
+    Image:          chaosnative/cle-license-module:2.3.0
+    Image:          chaosnative/cle-server:2.3.0
+    Image:         curlimages/curl:7.78.0
+    Image:         litmuschaos/argoexec:v2.11.0
+    Image:          litmuschaos/chaos-exporter:2.2.0
+    Image:         litmuschaos/chaos-operator:2.2.0
+    Image:          litmuschaos/chaos-runner:2.2.0
+    Image:         litmuschaos/curl:latest
+    Image:         litmuschaos/go-runner:2.2.0
+    Image:         litmuschaos/k8s:latest
+    Image:         litmuschaos/litmus-checker:latest
+    Image:          chaosnative/cle-event-tracker:2.3.0
+    Image:          chaosnative/cle-subscriber:2.3.0
+    Image:          litmuschaos/mongo:4.2.8
+    Image:         litmuschaos/workflow-controller:v2.11.0
