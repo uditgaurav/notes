@@ -1,51 +1,26 @@
-param([Int32]$CPU=4,[Int32]$Duration=60)
-set-strictmode -version 2.0
-if($CPU -like "0") {
-  $NumberOfLogicalProcessors = Get-WmiObject win32_processor | Select-Object -ExpandProperty NumberOfLogicalProcessors
-    ForEach ($core in 1..$NumberOfLogicalProcessors){
-      Start-Job -Name "ChaosCpu$core" -ScriptBlock {
-        $result = 1;
-        ForEach ($loopnumber in 1..2147483647){
-          $result=1;
-          ForEach ($loopnumber1 in 1..2147483647){
-            $result=1;
-            ForEach($number in 1..2147483647){
-              $result = $result * $number
-            } 
-          }
-        }
-      } | Out-Null
-      Write-Host "Started Job ChaosCpu$core"
-    }
-}else {
-    ForEach ($core in 1..$CPU){
-    Start-Job -Name "ChaosCpu$core" -ScriptBlock {
-      $result = 1;
-      ForEach ($loopnumber in 1..2147483647){
-        $result=1;
-        ForEach ($loopnumber1 in 1..2147483647){
-          $result=1;
-          ForEach($number in 1..2147483647){
-            $result = $result * $number
-          } 
-        }
-      }
-    } | Out-Null
-    Write-Host "Started Job ChaosCpu$core"
-  }
-}
-Write-Host "About to sleep for $Duration seconds"
-$totalduration = $Duration
-Start-Sleep -s ($totalduration/2)
-Get-WmiObject Win32_Processor | Select LoadPercentage | Format-List
-Start-Sleep -s ($totalduration/2)
-Get-WmiObject Win32_Processor | Select LoadPercentage | Format-List
-​
-Write-Host "About to stop jobs"
-$cpuJobs = Get-Job -Name "ChaosCpu*"
-ForEach ($job in $cpuJobs) {
-  Stop-Job -Name $job.Name | Out-Null
-  Write-Host "Stopped $($job.Name)"
-  Remove-Job -Name $job.Name | Out-Null
-  Write-Host "Removed $($job.Name)"
-}
+#!/bin/bash
+echo "Caution - This script will delete the namespace litmus "
+kubectl config current-context
+echo "Do you want to cleanup Litmus for this cluster"
+echo  'Press "0" & Enter to continue Or Press "any other key" & Enter to Abort'
+read line
+if [ "$line" -eq "0" ]
+then
+	echo " Cleanup Started" 
+	echo " Deleting ChaosEngines"
+	# kubectl delete chaosengines.litmuschaos.io --all -n litmus
+	echo " Deleting ChaosResults"
+	kubectl delete chaosresults.litmuschaos.io --all -n litmus
+	echo " Deleting ChaosExperiments"
+	kubectl delete chaosexperiments.litmuschaos.io --all -n litmus
+	echo " Deleting Litmus Namespace"
+	kubectl delete ns litmus
+	echo " Deleting Clusterroles"
+	kubectl get clusterroles | grep -i "argo\|litmus\|subscriber-cluster\|chaos-cluster-role" | awk '{print $1}' | xargs -n 1 kubectl delete clusterroles
+	echo " Deleting Cluster Role Binding"
+	kubectl get clusterrolebinding | grep -i "argo\|litmus\|subscriber-cluster\|chaos-cluster-role-binding" | awk '{print $1}' | xargs -n 1 kubectl delete clusterrolebinding
+	echo " Cleanup Done" 
+else
+	echo " Aborting Cleanup" 
+fi
+exit
