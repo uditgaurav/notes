@@ -707,7 +707,7 @@ spec:
       automountServiceAccountToken: false
       initContainers:
         - name: wait-for-mongodb
-          image: litmuschaos/curl:2.9.0
+          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/curl:latest
           command: ["/bin/sh", "-c"]
           args:
             [
