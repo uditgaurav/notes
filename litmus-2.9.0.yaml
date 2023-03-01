@@ -724,7 +724,7 @@ spec:
               ephemeral-storage: "1Gi"
       containers:
         - name: auth-server
-          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmusportal-auth-server:2.6.0
+          image: artifactory.global.standardchartered.com/ccibce/dev/litmuschaos/litmusportal-auth-server:2.9.0
           securityContext:
             runAsUser: 2000
             allowPrivilegeEscalation: false
