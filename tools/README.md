@@ -2,7 +2,7 @@
 
 ## Overview
 
-This script ensures that the EC2 Windows instance is primed for Harness Chaos Engineering. The steps involve verifying that specific processes and services run with administrator privileges, and ensuring that the Windows Firewall is enabled across all profiles.
+This script ensures that the EC2 Windows instance is primed for Harness Chaos Engineering. The steps involve verifying that `amazon-ssm-agent` run with administrator privileges, and ensuring that the Windows Firewall is enabled across all profiles.
 
 ## Script
 
