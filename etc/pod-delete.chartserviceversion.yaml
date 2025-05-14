@@ -1,0 +1,39 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-delete
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: Harness
+spec:
+  displayName: Pod Delete
+  categoryDescription: |
+    Pod delete fault disrupts the state of Kubernetes resources. This fault injects random pod delete failures against specified application.
+    - Causes (forced/graceful) pod failure of random replicas of an application deployment.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+  keywords:
+    - Kubernetes
+  plan:
+    - free
+  platforms:
+    - GKE
+    - EKS
+  experiments:
+    - nginx-pod-delete
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://docs.harness.io/category/kl0mxwpfw1-hce-category
+  icon:
+    - url:
+      mediatype: ""
+  infras:
+    - Kubernetes
+    - KubernetesV2
+  identity: pod-delete
+  permissionRef: https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/kubernetes/node/node-drain/#permissions-required
+  faultType: Basic
